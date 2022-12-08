@@ -17,7 +17,6 @@ function App() {
     setToys([...toys, newToy])
   }
 
-
   return (
     <>
       <Header />

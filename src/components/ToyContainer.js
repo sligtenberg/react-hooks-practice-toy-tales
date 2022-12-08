@@ -8,11 +8,21 @@ function ToyContainer({ setToys, toys }) {
     .then(setToys)
   }, [])
 
-  function deleteToy(toyToDelete) {
-    setToys(toys.filter(toy => toy.id === toyToDelete.id ? null : toy))
+  function deleteToy(idToDelete) {
+    setToys(toys.filter(toy => toy.id === idToDelete ? null : toy))
   }
 
-  const toyComponents = toys.map(toy => <ToyCard key={toy.id} toy={toy} deleteToy={deleteToy}/>)
+  function replaceToy(newToy) {
+    setToys(toys.filter(toy => toy.id === newToy.id ? newToy : toy))
+  }
+
+  const toyComponents = toys.map(toy =>
+    <ToyCard
+      key={toy.id}
+      toy={toy}
+      deleteToy={deleteToy}
+      replaceToy={replaceToy}
+    />)
   return (
     <div id="toy-collection">{toyComponents}</div>
   );
